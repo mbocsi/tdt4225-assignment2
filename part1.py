@@ -17,6 +17,7 @@ def main() -> None:
             LABELED_IDS.append(line.replace('\n', ''))
     logging.debug(LABELED_IDS)
 
+    # Create the tables
     db = Database()
     if not db.create_user_table():
         quit()
@@ -28,7 +29,7 @@ def main() -> None:
     for root, dirs, files in os.walk("dataset/Data", topdown=True):
         if root == 'dataset/Data':
             for dir in dirs:
-                if not db.insert_user(dir, dir in LABELED_IDS):
+                if not db.insert_user(dir, dir in LABELED_IDS): # Insert the users into the database
                     quit()
                 logging.info(f'Inserted user: {dir}')
         else:
@@ -71,6 +72,8 @@ def main() -> None:
                             break
                 
                 logging.debug(f'Inserting: {(activity_counter, user, transportation, start_datetime, end_datetime)}')
+
+                # Insert the activity into the database
                 if not db.insert_activity(id=activity_counter, 
                                 user_id=user, 
                                 transportation_mode=transportation,
@@ -86,6 +89,7 @@ def main() -> None:
                     point_datetime = f"{date} {time}"
                     track_points.append((activity_counter, lat, lon, alt, days, point_datetime))
 
+                # Insert the trackpoints associated with the activity
                 if not db.insert_trackpoints(track_points):
                     quit()
                 logging.info(f'Inserted trackpoints for activity: {activity_counter}')
