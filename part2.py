@@ -219,6 +219,7 @@ def sol10(db : Database) -> None:
                 curr_dist[user][mode] = 0           # Clear the current distances for the user
                         
         dist = haversine(prev_latlon,(lat, lon), unit=Unit.KILOMETERS)
+        # Update the current day distances
         if user not in curr_dist:
             curr_dist[user] = {transportation_mode: dist}
         elif transportation_mode not in curr_dist[user]:   
@@ -227,6 +228,7 @@ def sol10(db : Database) -> None:
             curr_dist[user][transportation_mode] += dist
         prev_latlon = (lat, lon)
 
+    # Find the maximum distance for each transportation mode
     table = []
     for mode, users in result.items():
         top_user = max(users, key=users.get)
