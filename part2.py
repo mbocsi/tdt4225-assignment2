@@ -105,7 +105,7 @@ def sol6(db : Database) -> None:
 # 7
 # a
 def sol7a(db : Database) -> None:
-    print("Number of activities that start and end on different days:")
+    print("Number of users that have an activity that starts and ends on different days:")
     query = '''
             SELECT COUNT(DISTINCT user_id)
             FROM `Activity`
@@ -282,16 +282,16 @@ def sol12(db : Database) -> None:
 
 if __name__ == '__main__':
     db = Database()
-    sol1(db)
-    sol2(db)
-    sol3(db)
-    sol4(db)
-    sol5(db)
-    sol6(db)
+    # sol1(db)
+    # sol2(db)
+    # sol3(db)
+    # sol4(db)
+    # sol5(db)
+    # sol6(db)
     sol7a(db)
-    sol7b(db)
-    sol8(db)
-    sol9(db)
-    sol10(db)
-    sol11(db)
-    sol12(db)
+    # sol7b(db)
+    # sol8(db)
+    # sol9(db)
+    # sol10(db)
+    # sol11(db)
+    # sol12(db)
