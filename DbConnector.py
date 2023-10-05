@@ -19,7 +19,7 @@ class DbConnector:
 
     def __init__(self,
                  HOST=os.environ["SQL_HOST"],
-                 DATABASE="db_test",
+                 DATABASE=os.environ["SQL_NAME"],
                  USER=os.environ["SQL_USER"],
                  PASSWORD=os.environ['SQL_PASSWORD']):
         # Connect to the database
